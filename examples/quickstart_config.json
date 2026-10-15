@@ -1,0 +1,19 @@
+{
+  "bigplay_file": "examples/bigplay_demo.csv",
+  "daas_file": "examples/daas_demo.csv",
+  "output_dir": "file:///tmp/data_validation_demo",
+  "run_id": "quickstart",
+  "infer_schema": false,
+  "numeric_columns": ["FUND_VALUE"],
+  "rules": {
+    "FUND_VALUE": {"numeric": true, "tolerance": "0.02", "scale": 2},
+    "STATUS": {"case_sensitive": false}
+  },
+  "dashboard": {"enabled": true, "sample_rows": 25, "max_columns": 100},
+  "spark": {
+    "shuffle_partitions": 2,
+    "output_partitions": 2,
+    "cache_inputs": true,
+    "single_csv_max_rows": 5000
+  }
+}

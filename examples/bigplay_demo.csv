@@ -1,0 +1,5 @@
+ACCOUNT_ID,FUND_VALUE,STATUS,PRODUCT
+001,100.00,Active,AnnuityA
+002,200.00,Active,AnnuityB
+003,300.00,Pending,AnnuityC
+005,500.00,Active,AnnuityE
