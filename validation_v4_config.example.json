@@ -1,0 +1,85 @@
+{
+  "bigplay_file": "/data/bigplay.csv",
+  "daas_file": "/data/daas.csv",
+  "output_dir": "file:///tmp/regression_results",
+  "infer_schema": false,
+  "numeric_columns": [
+    "FUND_VALUE",
+    "POSITION_QTY"
+  ],
+  "null_values": [
+    "",
+    "NULL"
+  ],
+  "required_columns": [
+    "ACCOUNT_ID",
+    "FUND_ID"
+  ],
+  "exclude_columns": [
+    "FILE_LOAD_TIMESTAMP"
+  ],
+  "numeric_tolerance": "0.00",
+  "rounding_scale": 4,
+  "rules": {
+    "FUND_VALUE": {
+      "numeric": true,
+      "tolerance": "0.01",
+      "scale": 4
+    },
+    "POSITION_QTY": {
+      "numeric": true,
+      "tolerance": "0.0001",
+      "scale": 4
+    },
+    "STATUS": {
+      "case_sensitive": false,
+      "trim_whitespace": true
+    },
+    "AS_OF_DATE": {
+      "kind": "date",
+      "date_format": "yyyy-MM-dd"
+    }
+  },
+  "reconciliations": [
+    {
+      "name": "fund_value_by_account",
+      "group_by": [
+        "ACCOUNT_ID"
+      ],
+      "sum_columns": [
+        "FUND_VALUE"
+      ],
+      "tolerance": "0.01"
+    },
+    {
+      "name": "overall_position_quantity",
+      "group_by": [],
+      "sum_columns": [
+        "POSITION_QTY"
+      ],
+      "tolerance": "0.001"
+    }
+  ],
+  "thresholds": {
+    "max_missing_rows": 0,
+    "max_mismatch_records": 10,
+    "max_schema_differences": 0,
+    "max_reconciliation_failures": 0,
+    "max_invalid_casts": 0,
+    "max_required_nulls": 0
+  },
+  "fail_on_schema_change": false,
+  "fail_on_invalid_conversion": true,
+  "spark": {
+    "shuffle_partitions": 16,
+    "cache_inputs": true,
+    "output_partitions": 8,
+    "single_csv_max_rows": 5000
+  },
+  "top_keys_limit": 20,
+  "dashboard": {
+    "enabled": true,
+    "sample_rows": 100,
+    "max_columns": 500
+  }
+}

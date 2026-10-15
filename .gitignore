@@ -1,0 +1,12 @@
+# Generated results may contain confidential identifiers and financial values.
+DataValidation_v4/
+**/DataValidation_differences*/
+**/DataValidation_*_reconciliation.csv/
+benchmark_results/
+bench_input_*/
+benchmark_outputs/
+*.log
+__pycache__/
+.pytest_cache/
+.venv/
+.DS_Store
